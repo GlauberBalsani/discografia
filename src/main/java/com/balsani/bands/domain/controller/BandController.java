@@ -2,16 +2,15 @@ package com.balsani.bands.domain.controller;
 
 import com.balsani.bands.domain.models.Band;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
+import com.balsani.bands.domain.models.dto.ResponseBandDto;
 import com.balsani.bands.domain.services.BandService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/bands")
@@ -28,6 +27,21 @@ public class BandController {
         CreateBandRequestDto createBand = bandService.createBand(createBandRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createBand);
+
+    }
+
+    @RequestMapping
+    public ResponseEntity<List<ResponseBandDto>> listAll() {
+        List<ResponseBandDto> bands = bandService.getAll();
+
+        return ResponseEntity.ok(bands);
+    }
+
+    @RequestMapping("/{bandId}")
+    public ResponseEntity<Optional<Band>> findById(@PathVariable("bandId") String bandId) {
+        var band = bandService.getById(bandId);
+
+        return ResponseEntity.ok(band);
 
     }
 }

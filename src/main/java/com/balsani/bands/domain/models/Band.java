@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +21,8 @@ public class Band {
     @Column(name = "formation_year")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate formationYear;
+    @OneToMany
+    private List<Record> records;
 
     public Band() {
     }

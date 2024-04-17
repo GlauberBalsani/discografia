@@ -9,6 +9,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -29,12 +32,30 @@ public class BandService {
                 createBandRequestDto.formationYear()
         );
 
-        var bandSaved =bandRepository.save(band);
+        var bandSaved = bandRepository.save(band);
 
         return CreateBandRequestDto.toModel(bandSaved);
     }
 
-//    public List<ResponseBandDto> getAll() {
-//
-//    }
+    public List<ResponseBandDto> getAll() {
+        return bandRepository
+                .findAll()
+                .stream()
+                .map(band -> new ResponseBandDto(
+                        band.getBandId(),
+                        band.getBandName(),
+                        band.getDescription(),
+                        band.getFormationYear()))
+                .collect(Collectors.toList());
+
+
+    }
+
+    public Optional<Band> getById(String bandId) {
+        //var id = UUID.fromString(bandId);
+        return bandRepository.findById(UUID.fromString(bandId));
+
+    }
+
+
 }
