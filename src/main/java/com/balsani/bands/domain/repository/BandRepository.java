@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface BandRepository extends JpaRepository<Band, UUID> {
+    public boolean existsBandByBandName(String bandName);
 }

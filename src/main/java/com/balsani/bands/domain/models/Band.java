@@ -3,6 +3,7 @@ package com.balsani.bands.domain.models;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,12 +19,12 @@ public class Band {
     private String description;
     @Column(name = "formation_year")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date formationYear;
+    private LocalDate formationYear;
 
     public Band() {
     }
 
-    public Band(String bandName, String description, Date formationYear) {
+    public Band(String bandName, String description, LocalDate formationYear) {
         this.bandName = bandName;
         this.description = description;
         this.formationYear = formationYear;
@@ -33,6 +34,9 @@ public class Band {
         return bandId;
     }
 
+    public void setBandId(UUID bandId) {
+        this.bandId = bandId;
+    }
 
     public String getBandName() {
         return bandName;
@@ -50,11 +54,11 @@ public class Band {
         this.description = description;
     }
 
-    public Date getFormationYear() {
+    public LocalDate getFormationYear() {
         return formationYear;
     }
 
-    public void setFormationYear(Date formationYear) {
+    public void setFormationYear(LocalDate formationYear) {
         this.formationYear = formationYear;
     }
 }
