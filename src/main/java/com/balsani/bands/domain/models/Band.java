@@ -27,10 +27,11 @@ public class Band {
     public Band() {
     }
 
-    public Band(String bandName, String description, LocalDate formationYear) {
+    public Band(String bandName, String description, LocalDate formationYear, List<Record> records) {
         this.bandName = bandName;
         this.description = description;
         this.formationYear = formationYear;
+        this.records = records;
     }
 
     public UUID getBandId() {
@@ -63,5 +64,13 @@ public class Band {
 
     public void setFormationYear(LocalDate formationYear) {
         this.formationYear = formationYear;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
     }
 }

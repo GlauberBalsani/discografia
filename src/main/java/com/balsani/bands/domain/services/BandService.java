@@ -8,6 +8,7 @@ import com.balsani.bands.domain.repository.BandRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,7 +30,8 @@ public class BandService {
         var band = new Band(
                 createBandRequestDto.bandName(),
                 createBandRequestDto.description(),
-                createBandRequestDto.formationYear()
+                createBandRequestDto.formationYear(),
+                null
         );
 
         var bandSaved = bandRepository.save(band);
@@ -45,14 +47,20 @@ public class BandService {
                         band.getBandId(),
                         band.getBandName(),
                         band.getDescription(),
-                        band.getFormationYear()))
+                        band.getFormationYear(),
+                        new ArrayList<>()))
                 .collect(Collectors.toList());
 
 
     }
 
+    public void updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
+        var id = UUID.fromString(bandId);
+
+    }
+
     public Optional<Band> getById(String bandId) {
-        //var id = UUID.fromString(bandId);
+
         return bandRepository.findById(UUID.fromString(bandId));
 
     }
