@@ -54,8 +54,17 @@ public class BandService {
 
     }
 
-    public void updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
+    public Optional<CreateBandRequestDto> updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
         var id = UUID.fromString(bandId);
+
+        return bandRepository.findById(id).map(band -> {
+            band.setBandName(createBandRequestDto.bandName());
+            band.setDescription(createBandRequestDto.description());
+            band.setFormationYear(createBandRequestDto.formationYear());
+
+            return CreateBandRequestDto.toModel(band);
+        });
+
 
     }
 
