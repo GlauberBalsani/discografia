@@ -74,5 +74,9 @@ public class BandService {
 
     }
 
+    public void deleteBand(String bandId) {
+        bandRepository.deleteById(UUID.fromString(bandId));
+    }
+
 
 }

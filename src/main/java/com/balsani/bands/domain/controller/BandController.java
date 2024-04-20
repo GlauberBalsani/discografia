@@ -52,4 +52,11 @@ public class BandController {
         bandService.updateBand(bandId, createBandRequestDto);
         return ResponseEntity.ok().body(createBandRequestDto);
     }
+
+    @DeleteMapping("/{bandId}")
+    public ResponseEntity<Void> delete(@PathVariable String bandId) {
+        bandService.deleteBand(bandId);
+
+        return ResponseEntity.noContent().build();
+    }
 }
