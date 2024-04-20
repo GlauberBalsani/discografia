@@ -1,10 +1,13 @@
 package com.balsani.bands.domain.services;
 
 
+import com.balsani.bands.domain.models.Album;
 import com.balsani.bands.domain.models.Band;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
+import com.balsani.bands.domain.models.dto.CreateAlbumRequestDto;
 import com.balsani.bands.domain.models.dto.ResponseBandDto;
 import com.balsani.bands.domain.repository.BandRepository;
+import com.balsani.bands.domain.services.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +18,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
+@Transactional()
 public class BandService {
     private final BandRepository bandRepository;
 
@@ -76,6 +79,21 @@ public class BandService {
 
     public void deleteBand(String bandId) {
         bandRepository.deleteById(UUID.fromString(bandId));
+    }
+
+    public CreateAlbumRequestDto createRecord(
+            String bandId, CreateAlbumRequestDto createAlbumRequestDto) {
+        var band = bandRepository.findById(UUID.fromString(bandId))
+                .orElseThrow(() -> new ResourceNotFoundException("Band not found"));
+
+        var album = new Album(
+                createAlbumRequestDto.title(),
+                createAlbumRequestDto.description(),
+                createAlbumRequestDto.dateOfRelease()
+        );
+
+
+        return CreateAlbumRequestDto.toModel(album);
     }
 
 

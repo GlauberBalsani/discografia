@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 @Entity
 @Table(name = "tb_record")
-public class Record {
+public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID recordId;
@@ -19,10 +19,10 @@ public class Record {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfRelease;
 
-    public Record() {
+    public Album() {
     }
 
-    public Record(String title, String description, LocalDate dateOfRelease) {
+    public Album(String title, String description, LocalDate dateOfRelease) {
         this.title = title;
         this.description = description;
         this.dateOfRelease = dateOfRelease;

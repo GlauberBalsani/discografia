@@ -2,6 +2,7 @@ package com.balsani.bands.domain.controller;
 
 import com.balsani.bands.domain.models.Band;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
+import com.balsani.bands.domain.models.dto.CreateAlbumRequestDto;
 import com.balsani.bands.domain.models.dto.ResponseBandDto;
 import com.balsani.bands.domain.services.BandService;
 import jakarta.validation.Valid;
@@ -58,5 +59,14 @@ public class BandController {
         bandService.deleteBand(bandId);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("{bandId}/album")
+    public ResponseEntity<CreateAlbumRequestDto> createAlbum(
+            @PathVariable("bandId") String bandId,
+            @RequestBody @Valid CreateAlbumRequestDto createAlbumRequestDto) {
+        CreateAlbumRequestDto record = bandService.createRecord(bandId, createAlbumRequestDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(record);
     }
 }

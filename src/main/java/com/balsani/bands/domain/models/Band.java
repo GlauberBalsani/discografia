@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,16 +21,16 @@ public class Band {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate formationYear;
     @OneToMany
-    private List<Record> records;
+    private List<Album> albums;
 
     public Band() {
     }
 
-    public Band(String bandName, String description, LocalDate formationYear, List<Record> records) {
+    public Band(String bandName, String description, LocalDate formationYear, List<Album> albums) {
         this.bandName = bandName;
         this.description = description;
         this.formationYear = formationYear;
-        this.records = records;
+        this.albums = albums;
     }
 
     public UUID getBandId() {
@@ -66,11 +65,11 @@ public class Band {
         this.formationYear = formationYear;
     }
 
-    public List<Record> getRecords() {
-        return records;
+    public List<Album> getRecords() {
+        return albums;
     }
 
-    public void setRecords(List<Record> records) {
-        this.records = records;
+    public void setRecords(List<Album> albums) {
+        this.albums = albums;
     }
 }
