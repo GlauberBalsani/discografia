@@ -13,7 +13,7 @@ import com.balsani.bands.domain.services.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -67,10 +67,10 @@ public class BandService {
 
 
 
-    public Optional<CreateBandRequestDto> updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
+    public void updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
         var id = UUID.fromString(bandId);
 
-        return bandRepository.findById(id).map(band -> {
+        bandRepository.findById(id).map(band -> {
             band.setBandName(createBandRequestDto.bandName());
             band.setDescription(createBandRequestDto.description());
             band.setFormationYear(createBandRequestDto.formationYear());

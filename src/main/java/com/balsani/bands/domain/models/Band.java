@@ -15,7 +15,7 @@ public class Band {
     private UUID bandId;
     @Column(name = "band_name")
     private String bandName;
-    @Column(name = "descripton")
+    @Column(name = "descripton", length = 1000)
     private String description;
     @Column(name = "formation_year")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
