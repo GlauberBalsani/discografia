@@ -20,5 +20,10 @@ Uma banda ou artista possui 1 ou n ábuns musicais
 | Create Album | POST     |     /v1/bands{bandId}/album               | `{"title" : "Black Sabbath", "description" : "Black Sabbath é o álbum de estreia da banda inglesa do mesmo nome, lançado em 1970", "dateOfRelease" : "1970-02-13"}` |
 
 
-
+## Descrição
+- Criar uma banda
+- Editar uma banda
+- Consultar uma banda
+- Listar as bandas
+- Criar um Album associado a uma banda
 
