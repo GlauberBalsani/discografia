@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_bands")
+@Table(name = "tb_band")
 public class Band {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -65,7 +65,7 @@ public class Band {
         this.formationYear = formationYear;
     }
 
-    public List<Album> getRecords() {
+    public List<Album> getAlbums() {
         return albums;
     }
 

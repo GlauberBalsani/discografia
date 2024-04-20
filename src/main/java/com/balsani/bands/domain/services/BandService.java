@@ -3,9 +3,11 @@ package com.balsani.bands.domain.services;
 
 import com.balsani.bands.domain.models.Album;
 import com.balsani.bands.domain.models.Band;
+import com.balsani.bands.domain.models.dto.AlbumResponseDto;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
 import com.balsani.bands.domain.models.dto.CreateAlbumRequestDto;
 import com.balsani.bands.domain.models.dto.ResponseBandDto;
+import com.balsani.bands.domain.repository.AlbumRepository;
 import com.balsani.bands.domain.repository.BandRepository;
 import com.balsani.bands.domain.services.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
@@ -21,9 +23,11 @@ import java.util.stream.Collectors;
 @Transactional()
 public class BandService {
     private final BandRepository bandRepository;
+    private final AlbumRepository albumRepository;
 
-    public BandService(BandRepository bandRepository) {
+    public BandService(BandRepository bandRepository, AlbumRepository albumRepository) {
         this.bandRepository = bandRepository;
+        this.albumRepository = albumRepository;
     }
 
     public CreateBandRequestDto createBand(CreateBandRequestDto createBandRequestDto) {
@@ -42,6 +46,8 @@ public class BandService {
         return CreateBandRequestDto.toModel(bandSaved);
     }
 
+
+
     public List<ResponseBandDto> getAll() {
         return bandRepository
                 .findAll()
@@ -51,11 +57,15 @@ public class BandService {
                         band.getBandName(),
                         band.getDescription(),
                         band.getFormationYear(),
-                        new ArrayList<>()))
+                        band.getAlbums().stream()
+                                .map(AlbumResponseDto::toDto)
+                                .collect(Collectors.toList())
+                ))
                 .collect(Collectors.toList());
-
-
     }
+
+
+
 
     public Optional<CreateBandRequestDto> updateBand(String bandId, CreateBandRequestDto createBandRequestDto) {
         var id = UUID.fromString(bandId);
@@ -81,7 +91,7 @@ public class BandService {
         bandRepository.deleteById(UUID.fromString(bandId));
     }
 
-    public CreateAlbumRequestDto createRecord(
+    public CreateAlbumRequestDto createAlbum(
             String bandId, CreateAlbumRequestDto createAlbumRequestDto) {
         var band = bandRepository.findById(UUID.fromString(bandId))
                 .orElseThrow(() -> new ResourceNotFoundException("Band not found"));
@@ -91,6 +101,11 @@ public class BandService {
                 createAlbumRequestDto.description(),
                 createAlbumRequestDto.dateOfRelease()
         );
+
+        albumRepository.save(album);
+
+        band.getAlbums().add(album);
+
 
 
         return CreateAlbumRequestDto.toModel(album);

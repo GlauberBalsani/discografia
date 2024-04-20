@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.UUID;
 @Entity
-@Table(name = "tb_record")
+@Table(name = "tb_album")
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,6 +18,7 @@ public class Album {
     @Column(name = "date_of_release")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfRelease;
+
 
     public Album() {
     }

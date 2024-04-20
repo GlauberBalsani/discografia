@@ -9,6 +9,6 @@ public record ResponseBandDto(
         String bandName,
         String description,
         LocalDate formationYear,
-        List<RecordResponseDto> recordResponseDto
+        List<AlbumResponseDto> albumResponseDto
 ) {
 }

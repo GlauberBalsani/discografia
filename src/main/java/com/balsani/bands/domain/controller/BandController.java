@@ -65,7 +65,7 @@ public class BandController {
     public ResponseEntity<CreateAlbumRequestDto> createAlbum(
             @PathVariable("bandId") String bandId,
             @RequestBody @Valid CreateAlbumRequestDto createAlbumRequestDto) {
-        CreateAlbumRequestDto record = bandService.createRecord(bandId, createAlbumRequestDto);
+        CreateAlbumRequestDto record = bandService.createAlbum(bandId, createAlbumRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(record);
     }
