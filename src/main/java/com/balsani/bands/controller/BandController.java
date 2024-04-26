@@ -1,4 +1,4 @@
-package com.balsani.bands.domain.controller;
+package com.balsani.bands.controller;
 
 import com.balsani.bands.domain.models.Band;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
@@ -33,14 +33,14 @@ public class BandController {
 
     }
 
-    @RequestMapping
+    @GetMapping
     public ResponseEntity<List<ResponseBandDto>> listAll(@PageableDefault(size = 10, sort = {"bandName"})Pageable pageable) {
         List<ResponseBandDto> bands = bandService.getAll();
 
         return ResponseEntity.ok(bands);
     }
 
-    @RequestMapping("/{bandId}")
+    @GetMapping("/{bandId}")
     public ResponseEntity<Optional<Band>> findById(@PathVariable("bandId") String bandId) {
         var band = bandService.getById(bandId);
 

@@ -10,6 +10,8 @@ import com.balsani.bands.domain.models.dto.ResponseBandDto;
 import com.balsani.bands.domain.repository.AlbumRepository;
 import com.balsani.bands.domain.repository.BandRepository;
 import com.balsani.bands.domain.services.exceptions.ResourceNotFoundException;
+import com.balsani.bands.infra.ExceptionHandling;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -82,7 +84,12 @@ public class BandService {
     }
 
     public Optional<Band> getById(String bandId) {
+        var id = UUID.fromString(bandId);
+        var bandExists = bandRepository.existsById(id);
+        if (!bandExists) {
+            throw new EntityNotFoundException("Banda não encontrada com o ID: " + bandId);
 
+        }
         return bandRepository.findById(UUID.fromString(bandId));
 
     }
