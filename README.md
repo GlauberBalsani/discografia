@@ -26,4 +26,5 @@ Uma banda ou artista possui 1 ou n ábuns musicais
 - Consultar uma banda
 - Listar as bandas
 - Criar um Álbum associado a uma banda
+- Buscar uma banda e seus álbuns 
 
