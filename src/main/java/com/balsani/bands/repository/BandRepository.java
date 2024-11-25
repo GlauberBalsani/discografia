@@ -1,4 +1,4 @@
-package com.balsani.bands.domain.repository;
+package com.balsani.bands.repository;
 
 import com.balsani.bands.domain.models.Band;
 import org.springframework.data.jpa.repository.JpaRepository;

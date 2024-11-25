@@ -1,4 +1,4 @@
-package com.balsani.bands.domain.services.exceptions;
+package com.balsani.bands.services.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

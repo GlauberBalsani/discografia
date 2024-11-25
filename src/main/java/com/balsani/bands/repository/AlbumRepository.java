@@ -1,4 +1,4 @@
-package com.balsani.bands.domain.repository;
+package com.balsani.bands.repository;
 
 import com.balsani.bands.domain.models.Album;
 import com.balsani.bands.domain.models.dto.AlbumResponseDto;

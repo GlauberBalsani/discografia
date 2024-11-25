@@ -1,8 +1,7 @@
 package com.balsani.bands.controller;
 
 import com.balsani.bands.domain.models.Album;
-import com.balsani.bands.domain.repository.AlbumRepository;
-import com.balsani.bands.domain.services.AlbumService;
+import com.balsani.bands.services.AlbumService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

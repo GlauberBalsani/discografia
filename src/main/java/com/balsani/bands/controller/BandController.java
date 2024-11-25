@@ -4,7 +4,7 @@ import com.balsani.bands.domain.models.Band;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
 import com.balsani.bands.domain.models.dto.CreateAlbumRequestDto;
 import com.balsani.bands.domain.models.dto.ResponseBandDto;
-import com.balsani.bands.domain.services.BandService;
+import com.balsani.bands.services.BandService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

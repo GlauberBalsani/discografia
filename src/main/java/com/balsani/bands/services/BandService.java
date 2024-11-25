@@ -1,4 +1,4 @@
-package com.balsani.bands.domain.services;
+package com.balsani.bands.services;
 
 
 import com.balsani.bands.domain.models.Album;
@@ -7,10 +7,9 @@ import com.balsani.bands.domain.models.dto.AlbumResponseDto;
 import com.balsani.bands.domain.models.dto.CreateBandRequestDto;
 import com.balsani.bands.domain.models.dto.CreateAlbumRequestDto;
 import com.balsani.bands.domain.models.dto.ResponseBandDto;
-import com.balsani.bands.domain.repository.AlbumRepository;
-import com.balsani.bands.domain.repository.BandRepository;
-import com.balsani.bands.domain.services.exceptions.ResourceNotFoundException;
-import com.balsani.bands.infra.ExceptionHandling;
+import com.balsani.bands.repository.AlbumRepository;
+import com.balsani.bands.repository.BandRepository;
+import com.balsani.bands.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
